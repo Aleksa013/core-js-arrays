@@ -353,10 +353,18 @@ function calculateBalance(arr) {
  *    createChunks(['a', 'b', 'c', 'd', 'e'], 2) => [['a', 'b'], ['c', 'd'], ['e']]
  *    createChunks([10, 20, 30, 40, 50], 1) => [[10], [20], [30], [40], [50]]
  */
-function createChunks(/* arr, chunkSize */) {
-  throw new Error('Not implemented');
-}
 
+function createChunks(arr, chunkSize) {
+  let res = [];
+  const arrOneChunk = arr;
+  if (arr.length <= chunkSize && arr.length > 0) {
+    res.push(arr);
+  } else {
+    const chunk = arrOneChunk.splice(0, chunkSize);
+    res = [chunk, ...createChunks(arrOneChunk, chunkSize)];
+  }
+  return res;
+}
 /**
  * Generates an array of odd numbers of the specified length.
  *
@@ -369,10 +377,20 @@ function createChunks(/* arr, chunkSize */) {
  *    generateOdds(2) => [ 1, 3 ]
  *    generateOdds(5) => [ 1, 3, 5, 7, 9 ]
  */
-function generateOdds(/* len */) {
-  throw new Error('Not implemented');
+function generateOdds(len) {
+  let number = 1;
+  const res = Array(len);
+  res.fill(0);
+  const mapArr = res.map((x) => {
+    let item = x;
+    if (item === 0) {
+      item = number;
+      number += 2;
+    }
+    return item;
+  });
+  return mapArr;
 }
-
 /**
  * Returns an element from the multidimensional array by the specified indices.
  *
