@@ -537,8 +537,19 @@ function findCommonElements(arr1, arr2) {
  *    findLongestIncreasingSubsequence([3, 10, 2, 1, 20]) => 2
  *    findLongestIncreasingSubsequence([50, 3, 10, 7, 40, 80]) => 3
  */
-function findLongestIncreasingSubsequence(/* nums */) {
-  throw new Error('Not implemented');
+function findLongestIncreasingSubsequence(nums) {
+  const lengths = [];
+  let count = 1;
+  nums.map((x, index) => {
+    if (x < nums[index + 1]) {
+      count += 1;
+    } else {
+      lengths.push(count);
+      count = 1;
+    }
+    return lengths;
+  });
+  return Math.max(...lengths);
 }
 
 /**
@@ -555,10 +566,14 @@ function findLongestIncreasingSubsequence(/* nums */) {
  *  propagateItemsByPositionIndex([ 'a', 'b', 'c', null ]) => [ 'a', 'b', 'b', 'c', 'c', 'c',  null, null, null, null ]
  *  propagateItemsByPositionIndex([ 1,2,3,4,5 ]) => [ 1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5 ]
  */
-function propagateItemsByPositionIndex(/* arr */) {
-  throw new Error('Not implemented');
+function propagateItemsByPositionIndex(arr) {
+  let resArr = [];
+  arr.map((x, index) => {
+    resArr = resArr.concat(Array(index + 1).fill(x));
+    return resArr;
+  });
+  return resArr;
 }
-
 /**
  * Shifts an array by n positions. If n is negative, the array is shifted to the left;
  * if positive, it is shifted to the right.
