@@ -440,10 +440,19 @@ function getFalsyValuesCount(arr) {
  *                              [0,0,0,1,0],
  *                              [0,0,0,0,1]]
  */
-function getIdentityMatrix(/* n */) {
-  throw new Error('Not implemented');
+//   throw new Error('Not implemented');
+function getIdentityMatrix(n) {
+  const matrix = Array(n);
+  matrix.fill(Array(n));
+  matrix.map((x) => x.fill(0));
+  const result = matrix.map((arr, index) =>
+    arr
+      .slice(0 - n, index)
+      .concat([1])
+      .concat(arr.slice(index + 1, n))
+  );
+  return result;
 }
-
 /**
  * Returns an array containing indices of odd elements in the input array.
  *
@@ -606,8 +615,25 @@ function shiftArray(arr, n) {
  *   sortDigitNamesByNumericOrder([ 'nine','eight','nine','eight' ]) => [ 'eight','eight','nine','nine']
  *   sortDigitNamesByNumericOrder([ 'one','one','one','zero' ]) => [ 'zero','one','one','one' ]
  */
-function sortDigitNamesByNumericOrder(/* arr */) {
-  throw new Error('Not implemented');
+
+function sortDigitNamesByNumericOrder(arr) {
+  const arrNum = [
+    'zero',
+    'one',
+    'two',
+    'three',
+    'four',
+    'five',
+    'six',
+    'seven',
+    'eight',
+    'nine',
+  ];
+  const result = arrNum.map((x) => {
+    const filterArr = arr.filter((y) => y === x);
+    return filterArr;
+  });
+  return result.flat();
 }
 
 /**
